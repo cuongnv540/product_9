@@ -53,7 +53,11 @@ class DanhgiadoanvienController extends Controller
 		// $this->performAjaxValidation($model);
         $doan_vien = $model->doan_vien;
         $tieu_chi = $model->tieu_chi;
-        $can_bo_danh_gia_id = $model->can_bo_danh_gia->id;
+        if ($model->can_bo_danh_gia == NULL) {
+            $can_bo_danh_gia_id = NULL;
+        } else {
+            $can_bo_danh_gia_id = $model->can_bo_danh_gia->id;
+        }
 		if(isset($_POST['DanhGiaDoanVien']))
 		{
 			$model->attributes=$_POST['DanhGiaDoanVien'];

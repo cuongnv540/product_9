@@ -10,7 +10,7 @@ class ImageBehavior extends CBehavior
 
     public function getDirectory()
     {
-        $owner = $this->getOwner();
+        $owner = $this->getOwner(); 
         $model = $owner->tableName();
         if ($this->attr) {
             $folder_name = $owner->{$this->attr};
@@ -30,7 +30,9 @@ class ImageBehavior extends CBehavior
     public function getAllImages()
     {
         $dir = $this->getDirectory();
-        $absoluted_dir = __DIR__ . '/../..' . $dir;
+        $curr_dir = getcwd();
+        $absoluted_dir = $curr_dir. $dir ;
+        //$absoluted_dir = __DIR__ . '/../..' . $dir;
         $images = array();
         if (file_exists($absoluted_dir) && $handle = opendir($absoluted_dir)) {
             while (false !== ($file = readdir($handle))) {
@@ -49,7 +51,10 @@ class ImageBehavior extends CBehavior
     public function createDirectoryIfNotExists()
     {
         $dir = $this->getDirectory();
-        $absoluted_dir = __DIR__ . '/../..' . $dir;
+
+        $curr_dir = getcwd();
+        $absoluted_dir = $curr_dir. $dir ;
+        //$absoluted_dir = __DIR__ . '/../..' . $dir;
         if (!file_exists($absoluted_dir)) {
             mkdir($absoluted_dir);
             chmod($absoluted_dir, 0777);
@@ -60,7 +65,9 @@ class ImageBehavior extends CBehavior
     public function removeMainImage()
     {
         $dir = $this->getDirectory();
-        $absoluted_dir = __DIR__ . '/../..' . $dir;
+        $curr_dir = getcwd();
+        $absoluted_dir = $curr_dir. $dir ;
+        // $absoluted_dir = __DIR__ . '/../..' . $dir;
         if (file_exists($absoluted_dir) && $handle = opendir($absoluted_dir)) {
             while (false !== ($file = readdir($handle))) {
                 if (strpos($file, '.') != 0) {
@@ -112,7 +119,9 @@ class ImageBehavior extends CBehavior
     {
         $this->removeMainImage();
         $dir = $this->getDirectory();
-        $absoluted_dir = __DIR__ . '/../..' . $dir;
+        $curr_dir = getcwd();
+        $absoluted_dir = $curr_dir. $dir ;
+        //$absoluted_dir = __DIR__ . '/../..' . $dir;
         if (file_exists($absoluted_dir) && is_dir($absoluted_dir)) {
             $files = glob($absoluted_dir . '*');
             foreach ($files as $file) {

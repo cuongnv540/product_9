@@ -119,7 +119,7 @@
                     <div class="well-small well dvd"><a><i class="icon-chevron-right"></i>Đơn vị đoàn</a></div>
                     <ul class="nav nav-list tree dvd_2">
                         <?php
-                            if ($this->current_user != NULL) {
+                            if ($this->current_user != NULL ) {
                                 $don_vi = $this->current_user->getDonVi();
                                 $don_vi->printDonVi();
                             }
